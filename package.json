@@ -20,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/JasonOwenss/messaging-app/issues"
   },
-  "homepage": "https://github.com/JasonOwenss/messaging-app#readme"
+  "homepage": "https://github.com/JasonOwenss/messaging-app#readme",
+  "cacheDirectories": ["backendex/node_modules"]
 }
