@@ -1,0 +1,114 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body{
+  overflow-x: hidden;
+}
+.col1{
+  
+}
+
+.col2{
+  
+}
+.ChatView-row{
+  min-height: 79vh;
+  max-height: 79vh;
+  
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.ChatContactList-row{
+  min-height: 94vh;
+  max-height: 100vh;
+  overflow-y: scroll;
+}
+
+.ChatTextBox-row{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.this-client-messages{
+  
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  min-width: 5%;
+  max-width: 60%;
+  border-radius: 25px;
+  background: #34eba4;
+  padding-top: 6px; 
+  padding-bottom:6px;
+  padding-left:8px;
+  padding-right:8px;
+  font-size: 15px;
+  color:white;
+  margin-top: 2px;
+}
+.other-client-messages{
+  
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  min-width: 5%;
+  max-width: 60%;
+  border-radius: 25px;
+  background: #fa78ae;
+  padding-top: 6px; 
+  padding-bottom:6px;
+  padding-left:8px;
+  padding-right:8px;
+  font-size: 15px;
+  color:white;
+  margin-top: 2px;
+}
+
+.this-client-message-container{
+
+  display:flex;
+  justify-content: flex-end;
+  
+}
+
+.other-client-message-container{
+ 
+  display:flex;
+  justify-content: flex-start;
+}
+
+
+.chat-header{
+  height: 8vh;
+  border-bottom:1px solid;
+  border-bottom-color:#ebebeb;  
+}
+
+.chat-header-username{
+  color:black;
+  font-size: x-large;
+  font-weight: bold;
+  vertical-align: middle;
+  line-height: 8vh; 
+} 
