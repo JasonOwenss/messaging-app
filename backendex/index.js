@@ -32,12 +32,6 @@ const server = createServer(app);
 const connectionString = process.env.DB_CONNECTION;
 const pool = new Pool({
     connectionString: connectionString,
-    /*user: 'postgres',
-    host: 'localhost',
-    database: 'messenger',
-    password: 'sRj<6c:G:t\'@a2\'K',
-    port: 5432,*/
-
 })
 
 app.post('/register', (req,res,next) => {
