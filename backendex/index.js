@@ -11,10 +11,11 @@ const port = process.env.PORT || 8080;
 const { createServer } = require('http');
 const WebSocket = require('ws');
 const { Pool } = require('pg')
+const clientAddress = process.env.CLIENT_CONNECTION || "http://localhost:3000";
 
 var app = express();
 app.use(function(req,res,next){
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", clientAddress);
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
@@ -32,12 +33,6 @@ const server = createServer(app);
 const connectionString = process.env.DB_CONNECTION;
 const pool = new Pool({
     connectionString: connectionString,
-    /*user: 'postgres',
-    host: 'localhost',
-    database: 'messenger',
-    password: 'sRj<6c:G:t\'@a2\'K',
-    port: 5432,*/
-
 })
 
 app.post('/register', (req,res,next) => {
