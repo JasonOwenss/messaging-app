@@ -150,11 +150,14 @@ const clients = new Set();
 wss.on('connection', function connection(ws, request, client) {
     const data = url.parse(request.url,true).query;
     clients.add({"username":data.username,"client":ws});
+    ws.isActive = true;
     console.log('started client interval');
     console.log(clients)
-
+    
     // interval to keep client-server connection - 15 second ping
     const ping = setInterval(() => {
+        if (!ws.isActive) return ws.terminate();
+        ws.isActive = false;    
         ws.send(JSON.stringify({"type":"ping"}));
     }, 15000);
 
@@ -213,7 +216,7 @@ wss.on('connection', function connection(ws, request, client) {
             });
         }
         else if(message.type === "ping"){
-            
+            ws.isActive = true;
         }
         
     });
