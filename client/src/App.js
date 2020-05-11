@@ -22,10 +22,17 @@ function App() {
   const [friends, setFriends] = useState([]);
   const [selectedUserChat, setSelectedUserChat] = useState('');
   const ws = useRef(null);
+  const wsUrl = useRef(null);
+  const serverUrl = useRef(null);
+
+  useEffect(() => {
+    wsUrl.current = process.env.WEB_SOCKET_URL || 'ws://localhost:8080/';
+    serverUrl.current = process.env.SERVER_URL || 'http://localhost:8080/';
+  },[]);
   
   useEffect(()=> {
     if(isAuth){
-      ws.current = new WebSocket('ws://localhost:8080/?username='+username)
+      ws.current = new WebSocket(wsUrl.current + '?username=' + username)
       ws.current.onopen = evt => {
         console.log("connected")
   
@@ -78,7 +85,7 @@ function App() {
 
   function handleRegisterAuth(data){
 
-    axios.post("http://localhost:8080/register", {withCredentials:true},{
+    axios.post(serverUrl.current+'register', {withCredentials:true},{
       data:{
         username:data.username,
         password:data.password
@@ -103,7 +110,7 @@ function App() {
 
   function handleAuth(data){
     
-    axios.post("http://localhost:8080/login", {withCredentials:true},{
+    axios.post(serverUrl.current+'login', {withCredentials:true},{
       data:{
         username:data.username,
         password:data.password
@@ -187,6 +194,7 @@ function App() {
                 friendRequests={friendRequests} 
                 handleSetFriendRequests={handleSetFriendRequests}
                 ws={ws}
+                serverUrl={serverUrl}
                 handleAcceptFriendRequest={handleAcceptFriendRequest}
                 handleDeclineFriendRequest={handleDeclineFriendRequest}></NavBar>
             </Col>
@@ -197,6 +205,7 @@ function App() {
                 friends={friends}
                 userid={userid} 
                 username={username} 
+                serverUrl={serverUrl}
                 handleSetFriends={handleSetFriends}
                 handleSetSelectedUserChat={handleSetSelectedUserChat}></ChatContactList>
             </Col>
@@ -211,6 +220,7 @@ function App() {
               
                 <ChatTextBox
                   ws={ws}
+                  serverUrl={serverUrl}
                   userid={userid} 
                   username={username}
                   messages={messages}

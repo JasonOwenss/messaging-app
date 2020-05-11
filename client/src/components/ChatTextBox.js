@@ -17,7 +17,7 @@ const ChatTextBox = props => {
 
     useEffect(() => {
         if(props.selectedUserChat !== ""){
-            axios.post("http://localhost:8080/messages", {withCredentials:true},{
+            axios.post(props.serverUrl.current+'messages', {withCredentials:true},{
             data:{
                 userid:props.userid,
                 adresseeId: props.selectedUserChat.userid

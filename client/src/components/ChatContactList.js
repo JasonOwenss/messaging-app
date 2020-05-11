@@ -6,7 +6,7 @@ const ChatContactList = props => {
 
     //load friends/chats
     useEffect(() => {
-        axios.get("http://localhost:8080/getfriends/"+props.userid, {withCredentials:true})
+        axios.get(props.serverUrl.current+'getfriends/'+props.userid, {withCredentials:true})
             .then(response => {
                 if (response.data.error){
                     alert("Error getting friend requests");

@@ -22,7 +22,7 @@ const NavBar = props => {
         e.preventDefault();
         const username = e.target.attributes.getNamedItem('user-name').value;
         const userid = e.target.attributes.getNamedItem('user-id').value;
-        axios.post("http://localhost:8080/acceptfriendrequest", {withCredentials:true},{
+        axios.post(props.serverUrl.current+'acceptfriendrequest', {withCredentials:true},{
                 data:{
                     adresseeId: props.userid,
                     requesterId: userid
@@ -47,7 +47,7 @@ const NavBar = props => {
         e.preventDefault();
         const username = e.target.attributes.getNamedItem('user-name').value;
         const userid = e.target.attributes.getNamedItem('user-id').value;
-        axios.post("http://localhost:8080/declinefriendrequest", {withCredentials:true},{
+        axios.post(props.serverUrl.current+'declinefriendrequest', {withCredentials:true},{
                 data:{
                     adresseeId: props.userid,
                     requesterId: userid
@@ -73,7 +73,7 @@ const NavBar = props => {
     },[usernameSearch]);
 
     useEffect(() => {
-        axios.post("http://localhost:8080/friendrequests", {withCredentials:true},{
+        axios.post(props.serverUrl.current+'friendrequests', {withCredentials:true},{
                 data:{
                     adresseeId: props.userid
                 }
