@@ -153,6 +153,11 @@ wss.on('connection', function connection(ws, request, client) {
     console.log('started client interval');
     console.log(clients)
 
+    // interval to keep client-server connection - 15 second ping
+    const ping = setInterval(() => {
+        ws.send(JSON.stringify({"type":"ping"}));
+    }, 15000);
+
     ws.on('message', function message(msg){
         const message = JSON.parse(msg);
         console.log(`Received message ${message.msg} type ${message.type}`);
@@ -199,12 +204,16 @@ wss.on('connection', function connection(ws, request, client) {
                 });
             
             
-        }else if(message.type === "friendRequestAccept"){
+        }
+        else if(message.type === "friendRequestAccept"){
             clients.forEach(c =>{
                 if (c.username === message.requesterName){
                     c.client.send(JSON.stringify({"type":"friendRequestAccept","adresseeId":message.adresseeId,"adresseeName":message.adresseeName}));
                 }
             });
+        }
+        else if(message.type === "ping"){
+            
         }
         
     });
@@ -216,7 +225,7 @@ wss.on('connection', function connection(ws, request, client) {
                 clients.delete(c);
             }
         })
-        //clearInterval(id);
+        clearInterval(ping);
     });
 });
 server.listen(port, function() {

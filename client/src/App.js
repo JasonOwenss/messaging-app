@@ -82,8 +82,12 @@ function App() {
 
           setFriends([...tempFriends]);
         }
-      }else if(message.type === "friendRequestAccept"){
+      }
+      else if(message.type === "friendRequestAccept"){
         setFriends([...friends,{"username":message.adresseeName,"userid":message.adresseeId}]);
+      }
+      else if(message.type === "ping"){
+        ws.current.send(JSON.stringify({"type":"ping"}));
       }
     }
   
@@ -123,8 +127,8 @@ function App() {
       }
     })
     .then(response => {
-      if (response.data.data === "incorrect password or error") {
-        alert("no match or error");
+      if (response.data.data === "no match or error") {
+        alert("incorrect password or error");
       }else if(response.data.data === "no user"){
         alert("no user with that username")
       }else{
