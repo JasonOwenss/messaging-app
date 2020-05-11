@@ -26,8 +26,14 @@ function App() {
   const serverUrl = useRef(null);
 
   useEffect(() => {
-    wsUrl.current = process.env.WEB_SOCKET_URL || 'ws://localhost:8080/';
-    serverUrl.current = process.env.SERVER_URL || 'http://localhost:8080/';
+    if (process.env.NODE_ENV === 'production'){
+      wsUrl.current = 'wss://messagapp.herokuapp.com/';
+      serverUrl.current = 'https://messagapp.herokuapp.com/';
+    }else{
+      wsUrl.current = 'ws://localhost:8080/';
+      serverUrl.current = 'http://localhost:8080/';
+    }
+    
   },[]);
   
   useEffect(()=> {
