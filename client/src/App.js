@@ -187,10 +187,16 @@ function App() {
   //render
   if(!isAuth){
     return (
-      <div className="container">
-        <Register handleRegisterAuth={handleRegisterAuth}></Register>
-        <Login handleAuth={handleAuth}></Login>
-      </div>
+      <Container fluid="true" className="login-container">
+        <Row className="login-row h-100 align-items-center justify-content-center">
+          <Col xs={6} md={4} className="login-col-1" align="center">
+            <Register handleRegisterAuth={handleRegisterAuth}></Register>
+          </Col>
+          <Col xs={6} md={4} className="" align="center">
+            <Login handleAuth={handleAuth}></Login>
+          </Col>
+        </Row>
+      </Container>
     )
   }else{
     return (

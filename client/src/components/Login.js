@@ -15,21 +15,30 @@ const Login = props => {
 
     
     return(
-        <div>
-            <form onSubmit={handleUsernameSubmit}>
+        <div className="login-reg-container">
+            <div className="login-reg-title">Login</div>
+            <br></br>
+            <form onSubmit={handleUsernameSubmit} className="form-group">
                 <input 
+                    className="form-control"
                     type="text" 
                     value={username}
                     placeholder="username"
                     onChange={handleUsernameChange}
                     required/>
+                <br></br>
                 <input
-                    type="text"
+                    className="form-control"                    
+                    type="password"
                     value={password}
                     placeholder="password"
                     onChange={handlePasswordChange}
                     required/>
-                <button>login</button>
+                <br></br>
+                
+                <button className="btn btn-primary">Login</button>
+                
+                
             </form>
         </div>
     )

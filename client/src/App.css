@@ -32,6 +32,32 @@ body{
 .col2{
   
 }
+
+.login-container{
+  height:100vh;
+
+}
+.login-col-1{
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #e6e6e6;
+}
+.login-reg-container{
+  border-style: solid;
+  border-radius: 15px;
+  border-color: #ebebeb;
+  border-width: 2px;
+  padding:10px;
+  min-height: 35vh;
+  max-width: 35vh;
+  
+}
+
+.login-reg-title{
+  font-size: large;
+  font-weight: bold;
+}
+
 .ChatView-row{
   min-height: 79vh;
   max-height: 79vh;
