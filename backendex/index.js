@@ -33,7 +33,7 @@ const server = createServer(app);
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({
     connectionString: connectionString,
-    ssl: true,
+    ssl: { rejectUnauthorized: true },
 })
 
 app.post('/register', (req,res,next) => {
