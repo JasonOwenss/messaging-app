@@ -30,9 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 const server = createServer(app);
-const connectionString = process.env.DB_CONNECTION;
+const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({
     connectionString: connectionString,
+    ssl: true,
 })
 
 app.post('/register', (req,res,next) => {
