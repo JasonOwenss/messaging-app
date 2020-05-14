@@ -1,5 +1,4 @@
-import  React, {useEffect,useState} from 'react';
-import axios from 'axios';
+import  React, {useState} from 'react';
 
 const ChatTextBox = props => {
     const [msgval, setMsgval] = useState('');
@@ -15,44 +14,32 @@ const ChatTextBox = props => {
         setMsgval('');
     }
 
-    useEffect(() => {
-        if(props.selectedUserChat !== ""){
-            axios.post(props.serverUrl.current+'messages', {withCredentials:true},{
-            data:{
-                userid:props.userid,
-                adresseeId: props.selectedUserChat.userid
-            }
-            }).then(response => {
-                if (response.data.error){
-                    alert("Error fetching messages");
-                }
-                else(props.handleSetMessages(response.data.data))
-            })
-            .catch(e => {
-                alert("Error fetching messages");
-            });
 
-        }
-        
-    },[props.selectedUserChat]);
-
-    return (
-    <div className="ChatTextBox-row">
-        <form onSubmit={handleMessageSubmit} >
-            <div className="input-group mb-3">
-            <input 
-                className="form-control"
-                type="text" 
-                value={msgval}
-                onChange={handleMsgChange}
-                required/>
-                <div className="input-group-append">
-                    <button type="submit" className="btn btn-dark">add msg</button>
-                </div>
+    if (!props.selectedUserChat.username){
+        return(
+            <div></div>
+        )
+    }
+    else{
+        return (
+            <div className="ChatTextBox-row">
+                <form onSubmit={handleMessageSubmit} >
+                    <div className="input-group mb-3">
+                    <input 
+                        className="form-control"
+                        type="text" 
+                        value={msgval}
+                        onChange={handleMsgChange}
+                        required/>
+                        <div className="input-group-append">
+                            <button type="submit" className="btn btn-dark">add msg</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-    );
+        );
+    }
+    
 }
     
 export default ChatTextBox;

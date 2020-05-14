@@ -138,3 +138,27 @@ body{
   vertical-align: middle;
   line-height: 8vh; 
 } 
+
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+  text-decoration:none;
+}
+
+.start-chat-div{
+  display: flex;
+  vertical-align: middle;
+  height:100%;
+  width: 100%;
+  margin:auto;
+  
+}
+
+.start-chat-p{
+  margin: auto; 
+  text-align: center;
+  color:black;
+  font-size: x-large;
+  font-weight: bold;
+  
+}

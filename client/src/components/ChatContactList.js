@@ -38,21 +38,25 @@ const ChatContactList = props => {
 
         {props.friends.map((friend)=>{
             return (
-            <div  > 
+            <div  >  
                 <Card >
                     <Card.Body >
-                        <Card.Text 
-                            key={friend.userid} 
-                            user-id={friend.userid} 
-                            user-name={friend.username} 
-                            onClick={handleUserChatClick}>
+                        <Card.Text >
+                            <a 
+                              href="#" 
+                              className="custom-card stretched-link"
+                              key={friend.userid} 
+                              user-id={friend.userid} 
+                              user-name={friend.username} 
+                              onClick={handleUserChatClick}>
                                 {friend.username}
+                            </a>  
                         </Card.Text>
                         <Card.Text >
-                                {showNotif(friend.notification)}
+                            {showNotif(friend.notification)}
                         </Card.Text>
                     </Card.Body>
-                </Card>     
+                </Card>  
             </div>          
             )
         })}

@@ -8,6 +8,7 @@ import ChatContactList from './components/ChatContactList';
 import ChatView from './components/ChatView';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -216,7 +217,7 @@ function App() {
             </Col>
           </Row>
           <Row className="justify-content-center main-row" >
-            <Col xs={3} className="col1">
+            <Col xs={5} md={3} className="col1">
               <ChatContactList
                 friends={friends}
                 userid={userid} 
@@ -225,13 +226,15 @@ function App() {
                 handleSetFriends={handleSetFriends}
                 handleSetSelectedUserChat={handleSetSelectedUserChat}></ChatContactList>
             </Col>
-            <Col xs={5} className="col2">
+            <Col xs={7} md={5} className="col2">
               
                 <ChatView
                   userid={userid} 
                   username={username} 
+                  serverUrl={serverUrl}
                   selectedUserChat={selectedUserChat}
-                  messages={messages}></ChatView>
+                  messages={messages}
+                  handleSetMessages={handleSetMessages}></ChatView>
               
               
                 <ChatTextBox
