@@ -50,13 +50,13 @@ const ChatView = props => {
                 </div>
                 </div>
             </div>
-            <div className="ChatView-row">
+            <div className="ChatView-loading">
                 <Loader
-                    type="Puff"
+                    type="ThreeDots"
                     color="#00BFFF"
-                    height={100}
-                    width={100}
-                    timeout={3000} //3 secs
+                    height={80}
+                    width={80}
+                     //3 secs
                 />
             </div>
             </div>

@@ -66,6 +66,13 @@ body{
   display: flex;
   flex-direction: column-reverse;
 }
+.ChatView-loading{
+  min-height: 79vh;
+  max-height: 79vh;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .ChatContactList-row{
   min-height: 94vh;
