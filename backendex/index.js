@@ -37,8 +37,8 @@ const pool = new Pool({
 })
 
 // wake up heroku
-app.get('/wakeupheroku', (req,res,next) => {
-    
+app.get('/', (req,res,next) => {
+    res.send("messaging server");
 });
 
 app.post('/register', (req,res,next) => {

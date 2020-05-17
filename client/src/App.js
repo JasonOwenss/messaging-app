@@ -34,7 +34,7 @@ function App() {
       serverUrl.current = 'http://localhost:8080/';
     }
     
-    axios.get(serverUrl.current+'wakeupheroku', {withCredentials:true})
+    axios.get(serverUrl.current, {withCredentials:true})
     .then(response => {
     })
     .catch(error => {
