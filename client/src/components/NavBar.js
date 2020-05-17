@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
-import Toast from 'react-bootstrap/Toast';
 import axios from 'axios';
 
 const NavBar = props => {
@@ -92,12 +91,12 @@ const NavBar = props => {
 
     return (
     <div >
-        <Navbar bg="light" expand="lg">
-        <Navbar.Brand >Messenger</Navbar.Brand>
+        <Navbar bg="light" expand="lg" >
+        <Navbar.Brand >{props.username}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-            <NavDropdown title="Friend Requests" id="basic-nav-dropdown">
+            <Nav className="mr-auto ">
+            <NavDropdown title="Friend Requests" id="basic-nav-dropdown" className="drop-down-button">
                 {props.friendRequests.map((requester)=>{
                         return (
                         <div>

@@ -1,4 +1,5 @@
 import  React, {useState} from 'react';
+import axios from 'axios';
 
 const Register = props => {
 
@@ -12,7 +13,27 @@ const Register = props => {
 
     function handleUsernameSubmit(e){
         e.preventDefault();
-        if (password === passwordConfirm) props.handleRegisterAuth({"username":username,"password":password});
+        if (password === passwordConfirm){
+            axios.post(props.serverUrl.current+'register', {withCredentials:true},{
+                data:{
+                  username:username,
+                  password:password
+                }
+              })
+              .then(response => {
+                console.log(response);
+                if (response.data.data === "error") {
+                  alert("error occured");
+                }else if(response.data.data === "user exists"){
+                  alert("that username is already taken")
+                }else{
+                  props.handleRegisterAuth({"username":username,"id":response.data.id});
+                }
+              })
+              .catch(error => {
+                console.log("register error")
+              });
+        } 
         else alert("Passwords do not match")
     }
 

@@ -6,13 +6,12 @@ import Register from './components/Register';
 import NavBar from './components/NavBar';
 import ChatContactList from './components/ChatContactList';
 import ChatView from './components/ChatView';
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-
+import axios from 'axios';
 
 function App() {
   const [messages,setMessages] = useState([]);
@@ -35,6 +34,12 @@ function App() {
       serverUrl.current = 'http://localhost:8080/';
     }
     
+    axios.get(serverUrl.current+'wakeupheroku', {withCredentials:true})
+    .then(response => {
+    })
+    .catch(error => {
+      alert("server error");
+    });
   },[]);
   
   useEffect(()=> {
@@ -96,53 +101,18 @@ function App() {
 
   function handleRegisterAuth(data){
 
-    axios.post(serverUrl.current+'register', {withCredentials:true},{
-      data:{
-        username:data.username,
-        password:data.password
-      }
-    })
-    .then(response => {
-      console.log(response);
-      if (response.data.data === "error") {
-        alert("error occured");
-      }else if(response.data.data === "user exists"){
-        alert("that username is already taken")
-      }else{
-        setUserid(response.data.id);
-        setUsername(response.data.username);
-        setIsAuth(true);
-      }
-    })
-    .catch(error => {
-      console.log("register error")
-    });
+    setUserid(data.id);
+    setUsername(data.username);
+    setIsAuth(true);
+
   }
 
   function handleAuth(data){
-    
-    axios.post(serverUrl.current+'login', {withCredentials:true},{
-      data:{
-        username:data.username,
-        password:data.password
-      }
-    })
-    .then(response => {
-      if (response.data.data === "no match or error") {
-        alert("incorrect password or error");
-      }else if(response.data.data === "no user"){
-        alert("no user with that username")
-      }else{
-        setUserid(response.data.id);
-        setUsername(response.data.username);
-        setIsAuth(true);
-      }
-    })
-    .catch(error => {
-      console.log("login error")
-    });
 
-    
+    setUserid(data.id);
+    setUsername(data.username);
+    setIsAuth(true);
+
   }
 
   function handleSetFriendRequests(data){
@@ -191,10 +161,14 @@ function App() {
       <Container fluid="true" className="login-container">
         <Row className="login-row h-100 align-items-center justify-content-center">
           <Col xs={6} md={4} className="login-col-1" align="center">
-            <Register handleRegisterAuth={handleRegisterAuth}></Register>
+            <Register 
+              handleRegisterAuth={handleRegisterAuth}
+              serverUrl={serverUrl}></Register>
           </Col>
           <Col xs={6} md={4} className="" align="center">
-            <Login handleAuth={handleAuth}></Login>
+            <Login 
+              handleAuth={handleAuth}
+              serverUrl={serverUrl}></Login>
           </Col>
         </Row>
       </Container>

@@ -148,7 +148,9 @@ body{
 
 a.custom-card,
 a.custom-card:hover {
-  color: inherit;
+  color:black;
+  font-size: large;
+  
   text-decoration:none;
 }
 
@@ -167,5 +169,12 @@ a.custom-card:hover {
   color:black;
   font-size: x-large;
   font-weight: bold;
+  
+}
+
+.drop-down-button{
+  background-color: white;
+  border-radius: 5px;
+  padding: 1px;
   
 }

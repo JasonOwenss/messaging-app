@@ -1,4 +1,5 @@
 import  React, {useState} from 'react';
+import axios from 'axios';
 
 const Login = props => {
 
@@ -10,7 +11,25 @@ const Login = props => {
 
     function handleUsernameSubmit(e){
         e.preventDefault();
-        props.handleAuth({"username":username,"password":password});
+        axios.post(props.serverUrl.current+'login', {withCredentials:true},{
+            data:{
+              username:username,
+              password:password
+            }
+          })
+          .then(response => {
+            if (response.data.data === "no match or error") {
+              alert("incorrect password or error");
+            }else if(response.data.data === "no user"){
+              alert("no user with that username")
+            }else{
+              props.handleAuth({"username":username,"id":response.data.id});
+            }
+          })
+          .catch(error => {
+            console.log("login error")
+          });
+        
     }
 
     

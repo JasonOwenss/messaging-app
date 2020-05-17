@@ -36,6 +36,11 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false },
 })
 
+// wake up heroku
+app.get('/wakeupheroku', (req,res,next) => {
+    
+});
+
 app.post('/register', (req,res,next) => {
     const saltRounds = 10;
     const username = req.body.username;
